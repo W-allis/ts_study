@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>box</h1>
+
+  <script src="../js/main.js"></script>
+
+  <script>
+      function Person() {
+        this.run = function() {
+          console.log(this.name + ' is working more than 8 hours')
+        }
+      }
+
+      function Man() {
+        this.name = 'wallis'
+
+        // Person.call(this)
+      }
+
+      Man.prototype = new Person()
+
+      var man = new Man()
+
+      // man.run()
+
+      // document.createEvent('')
+
+
+  </script>
+</body>
+</html>
