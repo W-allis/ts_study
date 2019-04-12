@@ -254,26 +254,69 @@ var defaultConfig = {
     async: true,
     contentType: 'application/json'
 };
-function ajax(config) {
-    var xhr = new XMLHttpRequest();
-    xhr.open(config.type, config.url, config.async);
-    xhr.send(config.data);
-    var promise = new Promise(function (resolve, reject) {
-        xhr.onreadystatechange = function (result) {
-            console.log(result);
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // resolve(result)
-            } else {
-                reject()
-            }
-        };
-    });
-    return promise;
+// function ajax<T>(config: RequestConfig): Promise<T> {
+//   let xhr = new XMLHttpRequest()
+//   xhr.open(config.type, config.url, config.async)
+//   xhr.send(config.data)
+//   let promise = new Promise<T>((resolve: (result?: T) => void, reject: (reason?: any) => void) => {  
+//     xhr.onreadystatechange = (result: Event) => {
+//       if (xhr.readyState === 4 && xhr.status === 200) {
+//         console.log(result)
+//         // resolve(result)
+//       }
+//     }
+//   })
+//   return promise
+// }
+// ajax({
+//   url: 'http://www.baidu.com',
+//   type: 'get'
+// })
+var ares_str = 'sdddrtkjsfkasjdddj';
+function getMaxLength(str) {
+    var collector = {};
+    for (var _i = 0, str_1 = str; _i < str_1.length; _i++) {
+        var k = str_1[_i];
+        collector.hasOwnProperty(k) ? ++collector[k] : (collector[k] = 1);
+    }
+    return collector;
 }
-ajax({
-    url: '/api/login',
-    type: 'get'
-}).catch(function(error) {
-    console.log(error)
-})
+console.log('---------------');
+console.log(getMaxLength(ares_str));
+var LM = /** @class */ (function () {
+    function LM(_name) {
+        this.name = _name;
+        this.callback = [];
+    }
+    LM.prototype.init = function () {
+        this.pushStrack();
+    };
+    LM.prototype.sleep = function (sleepTime) {
+        return this.pushStrack();
+    };
+    LM.prototype.sleepFirst = function (sleepTime) {
+        return this.pushStrack();
+    };
+    LM.prototype.eat = function (food) {
+        return this.pushStrack();
+    };
+    LM.prototype.pushStrack = function (fn) {
+        if (fn === void 0) { fn = function () { }; }
+        this.callback.push(fn);
+        return this;
+    };
+    LM.prototype.timeout = function (time) {
+        setTimeout(function () {
+        }, time);
+    };
+    LM.prototype.subscribe = function () {
+        this.callback.forEach(function (item) {
+            item();
+        });
+    };
+    return LM;
+}());
+function LazyMan(name) {
+    return new LM(name);
+}
 //# sourceMappingURL=main.js.map

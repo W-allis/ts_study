@@ -61,6 +61,7 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "lib": [
-    "es2016"
+    "es2016",
+    "es2015"
   ]
 }

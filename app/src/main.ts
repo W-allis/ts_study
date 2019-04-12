@@ -314,27 +314,89 @@ let defaultConfig = {
   contentType: 'application/json' 
 }
 
-function ajax<T>(config: RequestConfig): Promise<T> {
-  let xhr = new XMLHttpRequest()
+// function ajax<T>(config: RequestConfig): Promise<T> {
+//   let xhr = new XMLHttpRequest()
   
-  xhr.open(config.type, config.url, config.async)
-  xhr.send(config.data)
+//   xhr.open(config.type, config.url, config.async)
+//   xhr.send(config.data)
 
-  let promise = new Promise<T>((resolve: (result?: T) => void, reject: (reason?: any) => void) => {  
+//   let promise = new Promise<T>((resolve: (result?: T) => void, reject: (reason?: any) => void) => {  
 
-    xhr.onreadystatechange = (result: Event) => {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        console.log(result)
-        // resolve(result)
-      }
-    }
+//     xhr.onreadystatechange = (result: Event) => {
+//       if (xhr.readyState === 4 && xhr.status === 200) {
+//         console.log(result)
+//         // resolve(result)
+//       }
+//     }
     
-  })
+//   })
   
-  return promise
+//   return promise
+// }
+
+// ajax({
+//   url: 'http://www.baidu.com',
+//   type: 'get'
+// })
+
+var ares_str = 'sdddrtkjsfkasjdddj'
+
+function getMaxLength(str: string): { [key: string]: number } {
+  const collector: { [key: string]: number } = {}
+
+  for (let k of str) {
+    collector.hasOwnProperty(k) ? ++collector[k] : (collector[k] = 1)
+  }
+
+  return collector
+}
+console.log('---------------')
+console.log(getMaxLength(ares_str))
+
+class LM {
+  name: string
+  callback: any[]
+  constructor(_name: string) {
+    this.name = _name
+    this.callback = []
+  }
+
+  init(): void {
+      this.pushStrack()
+  }
+  
+  sleep(sleepTime: number): LM {
+    return this.pushStrack()
+  }
+
+  sleepFirst(sleepTime: number): LM {
+    return this.pushStrack()
+  }
+
+  eat(food: string): LM {
+    return this.pushStrack()
+  }
+
+  pushStrack(fn = () => {}): LM {
+    this.callback.push(fn)
+
+    return this
+  }
+
+  timeout(time: number) {
+    setTimeout(function() {
+
+    }, time)
+  }
+
+  subscribe() {
+    this.callback.forEach(item => {
+      item()
+    })
+  }
+
 }
 
-ajax({
-  url: 'http://www.baidu.com',
-  type: 'get'
-})
+function LazyMan(name: string) {
+  return new LM(name)
+}
